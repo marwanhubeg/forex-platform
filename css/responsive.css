@@ -1,0 +1,7 @@
+@media (max-width: 768px) {
+    .logo h1 { font-size: 1.3rem; }
+    .social-btn { padding: 5px 12px; font-size: 0.8rem; }
+    .mini-dashboard span { font-size: 0.7rem; padding: 4px 8px; }
+    .features-grid { grid-template-columns: 1fr; }
+    nav a { margin: 0 8px; font-size: 0.9rem; }
+}

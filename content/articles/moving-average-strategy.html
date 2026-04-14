@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المتوسطات المتحركة | استراتيجية التقاطع الذهبي | منصة التحليل التعليمي</title>
+    <meta name="description" content="تعلم استراتيجية المتوسطات المتحركة في الفوركس – أنواعها، التقاطع الذهبي، وإعدادات موصى بها للمبتدئين والمحترفين">
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary-blue: #1E3A5F; --primary-gold: #D4AF37; --success-green: #2ECC71; --danger-red: #E74C3C; --bg-dark: #0A1628; --bg-card: #0F1E3A; --text-light: #F0F4F8; --text-muted: #8BA0B8; --border-radius: 16px; --transition: all 0.3s ease; }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg-dark); color: var(--text-light); line-height: 1.8; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        .news-ticker { background: linear-gradient(90deg, var(--primary-blue), var(--bg-card)); padding: 6px 0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .ticker-content { display: inline-block; animation: tickerScroll 25s linear infinite; }
+        .ticker-item { display: inline-block; margin: 0 20px; font-size: 0.8rem; }
+        @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .header { background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; padding: 8px 24px; flex-wrap: wrap; gap: 10px; max-width: 1400px; margin: 0 auto; }
+        .logo { display: flex; align-items: center; gap: 8px; }
+        .logo-icon { font-size: 26px; }
+        .logo-text h1 { font-size: 1rem; font-weight: 700; color: var(--primary-gold); }
+        .logo-text p { font-size: 0.6rem; color: var(--text-muted); }
+        .nav-menu { display: flex; gap: 4px; flex-wrap: wrap; }
+        .nav-link { padding: 5px 12px; color: var(--text-light); text-decoration: none; border-radius: 50px; transition: var(--transition); font-weight: 500; font-size: 0.85rem; }
+        .nav-link:hover, .nav-link.active { background: var(--primary-gold); color: var(--bg-dark); }
+        .quick-links { display: flex; gap: 6px; }
+        .quick-link { padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 50px; text-decoration: none; color: var(--text-light); font-size: 0.7rem; transition: var(--transition); }
+        .quick-link:hover { background: var(--primary-gold); color: var(--bg-dark); }
+        .article-header { padding: 40px 0 20px; text-align: center; }
+        .article-title { font-size: 2rem; font-weight: 800; margin-bottom: 15px; background: linear-gradient(135deg, #fff, var(--primary-gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .article-meta { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .article-content { background: var(--bg-card); border-radius: var(--border-radius); padding: 35px; margin: 20px 0; border: 1px solid rgba(212, 175, 55, 0.1); }
+        .article-content h2 { color: var(--primary-gold); margin: 35px 0 15px; font-size: 1.5rem; border-right: 4px solid var(--primary-gold); padding-right: 15px; }
+        .article-content h3 { color: var(--primary-gold); margin: 25px 0 10px; font-size: 1.2rem; }
+        .article-content p { margin-bottom: 18px; color: var(--text-muted); line-height: 1.9; }
+        .article-content ul, .article-content ol { margin: 15px 0 20px 30px; color: var(--text-muted); }
+        .article-content li { margin-bottom: 10px; }
+        .article-content strong { color: var(--primary-gold); }
+        .info-box { background: rgba(212, 175, 55, 0.1); padding: 22px; border-radius: 12px; margin: 25px 0; border-right: 4px solid var(--primary-gold); }
+        .warning-box { background: rgba(231, 76, 60, 0.1); padding: 22px; border-radius: 12px; margin: 25px 0; border-right: 4px solid var(--danger-red); }
+        .tip-box { background: rgba(46, 204, 113, 0.1); padding: 22px; border-radius: 12px; margin: 25px 0; border-right: 4px solid var(--success-green); }
+        .example-box { background: rgba(0,0,0,0.3); padding: 22px; border-radius: 12px; margin: 25px 0; }
+        .nav-buttons { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px; margin: 40px 0 20px; }
+        .btn-next, .btn-back { display: inline-block; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: var(--transition); }
+        .btn-next { background: linear-gradient(135deg, var(--primary-gold), #b8941e); color: var(--bg-dark); }
+        .btn-back { background: transparent; border: 1px solid var(--primary-gold); color: var(--primary-gold); }
+        .btn-next:hover, .btn-back:hover { transform: translateY(-2px); }
+        .footer { background: #071124; padding: 40px 0 20px; margin-top: 50px; text-align: center; }
+        .footer-bottom { font-size: 0.7rem; color: var(--text-muted); }
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; text-align: center; }
+            .nav-menu, .quick-links { justify-content: center; }
+            .article-title { font-size: 1.5rem; }
+            .article-content { padding: 20px; }
+            .nav-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span class="ticker-item">📊 المتوسطات المتحركة – أقوى مؤشر فني للمبتدئين</span>
+            <span class="ticker-item">🎯 التقاطع الذهبي والتقاطع المميت – إشارات قوية</span>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <div class="logo-text">
+                    <h1>منصة التحليل التعليمي</h1>
+                    <p>للفوركس – تعلم التداول بثقة</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="../../index.html" class="nav-link">🏠 الرئيسية</a>
+                <a href="../../lessons.html" class="nav-link">📚 الدروس</a>
+                <a href="../../analysis.html" class="nav-link">📈 التحليلات</a>
+                <a href="../../tools.html" class="nav-link">🧮 الأدوات</a>
+            </nav>
+            <div class="quick-links">
+                <a href="https://www.facebook.com/share/1Do7CFgwRM/" target="_blank" class="quick-link">📘 فيسبوك</a>
+                <a href="https://t.me/zain81118" target="_blank" class="quick-link">💬 تلغرام</a>
+                <a href="https://one.exnessonelink.com/a/tjpvhjpv" target="_blank" class="quick-link">🚀 Exness</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="article-header">
+            <h1 class="article-title">📊 المتوسطات المتحركة – دليل كامل</h1>
+            <div class="article-meta">
+                <span>⏱️ 12 دقيقة قراءة</span>
+                <span>📊 مستوى: متوسط</span>
+                <span>📅 آخر تحديث: يناير 2025</span>
+            </div>
+        </div>
+
+        <div class="article-content">
+            <div class="info-box">
+                <p>📊 <strong>ما هي المتوسطات المتحركة؟</strong><br>
+                <strong>المتوسط المتحرك (Moving Average)</strong> هو مؤشر فني يحسب متوسط سعر زوج العملات خلال فترة زمنية محددة. يساعد في تحديد الاتجاه العام وتصفية تقلبات السوق.</p>
+            </div>
+
+            <h2>📊 أنواع المتوسطات المتحركة</h2>
+            <ul>
+                <li><strong>SMA (Simple Moving Average – بسيط):</strong> متوسط حسابي بسيط لجميع الأسعار خلال الفترة. مناسب للاتجاهات الطويلة.</li>
+                <li><strong>EMA (Exponential Moving Average – أسي):</strong> يعطي وزناً أكبر للأسعار الأخيرة. أسرع في الاستجابة وأفضل للمتداول اليومي.</li>
+            </ul>
+
+            <div class="tip-box">
+                <p>💡 <strong>أيهما أفضل؟</strong><br>
+                • للمبتدئين والمتداولين طويلي الأجل: SMA<br>
+                • للمتداولين اليوميين والمضاربين: EMA<br>
+                • يمكنك استخدام الاثنين معاً للحصول على إشارات أقوى</p>
+            </div>
+
+            <h2>📋 إعدادات موصى بها للمبتدئين</h2>
+            <ul>
+                <li><strong>للمتداول اليومي (Day Trading):</strong> EMA 9, EMA 20 على فريم 15 دقيقة أو ساعة</li>
+                <li><strong>للمتداول المتأرجح (Swing Trading):</strong> SMA 20, SMA 50, SMA 200 على فريم 4 ساعات</li>
+                <li><strong>للمتداول طويل المدى (Position Trading):</strong> SMA 50, SMA 200 على فريم يومي</li>
+            </ul>
+
+            <div class="example-box">
+                <p><strong>إعدادات شائعة للمبتدئين:</strong><br>
+                • EMA 20 (أخضر) + EMA 50 (أحمر) على فريم ساعة<br>
+                • عندما يتقاطع EMA 20 فوق EMA 50 → إشارة شراء<br>
+                • عندما يتقاطع EMA 20 تحت EMA 50 → إشارة بيع</p>
+            </div>
+
+            <h2>🎯 استراتيجية التقاطع الذهبي والموت (Golden Cross & Death Cross)</h2>
+            <p>هذه واحدة من أقوى استراتيجيات المتوسطات المتحركة، وتعتمد على تقاطع متوسط 50 مع متوسط 200.</p>
+            <ul>
+                <li><strong>التقاطع الذهبي (Golden Cross):</strong> عندما يتخطى المتوسط 50 (قصير الأجل) المتوسط 200 (طويل الأجل) للأعلى. هذه <strong>إشارة شراء قوية جداً</strong>، غالباً ما تتبعها موجة صاعدة قوية.</li>
+                <li><strong>التقاطع المميت (Death Cross):</strong> عندما يتخطى المتوسط 50 المتوسط 200 للأسفل. هذه <strong>إشارة بيع قوية</strong>، غالباً ما تتبعها موجة هابطة.</li>
+            </ul>
+
+            <div class="tip-box">
+                <p>💡 <strong>ملاحظة مهمة:</strong><br>
+                التقاطع الذهبي والموت هما إشارات قوية ولكنها نادرة. تحدث عادةً كل عدة أشهر أو سنوات. استخدمها على الفريم اليومي للحصول على أفضل النتائج.</p>
+            </div>
+
+            <h2>📊 استراتيجية المتوسطين المتحركين (Moving Average Crossover)</h2>
+            <p>هذه الاستراتيجية مناسبة للمتداول اليومي والمتأرجح، وتعتمد على متوسطين قصيرين (مثل EMA 9 و EMA 21).</p>
+            <ol>
+                <li><strong>إشارة شراء:</strong> عندما يتقاطع المتوسط السريع (9) فوق المتوسط البطيء (21) ← ادخل شراء</li>
+                <li><strong>إشارة بيع:</strong> عندما يتقاطع المتوسط السريع (9) تحت المتوسط البطيء (21) ← ادخل بيع</li>
+                <li><strong>وقف الخسارة:</strong> ضع وقف الخسارة أسفل/أعلى المتوسطات بمسافة 20-30 نقطة</li>
+                <li><strong>جني الأرباح:</strong> استهدف ضعف مسافة وقف الخسارة (نسبة مخاطرة 1:2)</li>
+            </ol>
+
+            <div class="example-box">
+                <p><strong>مثال تطبيقي على زوج EUR/USD (فريم ساعة):</strong><br>
+                • EMA 9 يتقاطع فوق EMA 21 عند سعر 1.0900<br>
+                ← إشارة شراء<br>
+                ← الدخول: 1.0905<br>
+                ← وقف الخسارة: 1.0880 (أسفل المتوسطات بـ 25 نقطة)<br>
+                ← هدف أول: 1.0955، هدف ثاني: 1.1005</p>
+            </div>
+
+            <div class="warning-box">
+                <p>⚠️ <strong>عيوب المتوسطات المتحركة:</strong><br>
+                • المتوسطات متأخرة (Lagging Indicator) – تعتمد على بيانات سابقة<br>
+                • تعطي إشارات خاطئة في الأسواق الجانبية (الرينج)<br>
+                • لا تعمل بشكل جيد في فترات التقلبات العالية المفاجئة</p>
+            </div>
+
+            <div class="tip-box">
+                <p>💡 <strong>نصائح لتحسين النتائج:</strong><br>
+                • لا تعتمد على المتوسطات فقط – استخدمها مع مؤشرات أخرى مثل RSI أو MACD<br>
+                • تجنب استخدام الاستراتيجية في الأسواق الجانبية (استخدم مؤشر ADX لتحديد قوة الاتجاه)<br>
+                • جرب الإعدادات على الحساب التجريبي قبل التداول الحقيقي<br>
+                • التزم بقواعد إدارة رأس المال (لا تخاطر بأكثر من 1-2% من رأس مالك)</p>
+            </div>
+
+            <div class="nav-buttons">
+                <a href="../../lessons.html" class="btn-back">← العودة إلى الدروس</a>
+                <a href="../../index.html" class="btn-next">الدرس التالي: الرئيسية →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2025 منصة التحليل التعليمي للفوركس – جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

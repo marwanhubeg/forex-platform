@@ -1,0 +1,60 @@
+/* =====================================================
+   ميزات إضافية – تصميم متقدم
+   ===================================================== */
+
+/* إحصائيات حية */
+.live-stats {
+    display: flex;
+    gap: 1rem;
+    background: rgba(99,102,241,0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    backdrop-filter: blur(4px);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+}
+
+/* مؤشر التحميل */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(99,102,241,0.3);
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* تأثيرات إضافية */
+.glass-effect {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+}
+
+/* تلميحات الأدوات */
+.tooltip {
+    position: relative;
+}
+
+.tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3rem;
+    font-size: 0.7rem;
+    white-space: nowrap;
+}

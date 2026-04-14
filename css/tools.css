@@ -1,0 +1,48 @@
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.tool-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.tool-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.tool-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tool-form input {
+    background: #0f1230;
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+}
+
+.tool-form button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.result {
+    background: #0f1230;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}

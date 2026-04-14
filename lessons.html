@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدروس التعليمية | منصة التحليل التعليمي للفوركس</title>
+    <meta name="description" content="17 درساً تعليمياً مجاناً – تعلم تداول الفوركس من الصفر إلى الاحتراف">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           الأنماط الأساسية (نفس باقي الموقع)
+           ============================================ */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-blue: #1E3A5F;
+            --primary-gold: #D4AF37;
+            --success-green: #2ECC71;
+            --danger-red: #E74C3C;
+            --bg-dark: #0A1628;
+            --bg-card: #0F1E3A;
+            --text-light: #F0F4F8;
+            --text-muted: #8BA0B8;
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        
+        /* شريط الأخبار */
+        .news-ticker { background: linear-gradient(90deg, var(--primary-blue), var(--bg-card)); padding: 6px 0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .ticker-content { display: inline-block; animation: tickerScroll 25s linear infinite; }
+        .ticker-item { display: inline-block; margin: 0 20px; font-size: 0.8rem; }
+        @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        /* الهيدر */
+        .header { background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; padding: 8px 24px; flex-wrap: wrap; gap: 10px; max-width: 1400px; margin: 0 auto; }
+        .logo { display: flex; align-items: center; gap: 8px; }
+        .logo-icon { font-size: 26px; }
+        .logo-text h1 { font-size: 1rem; font-weight: 700; color: var(--primary-gold); }
+        .logo-text p { font-size: 0.6rem; color: var(--text-muted); }
+        .nav-menu { display: flex; gap: 4px; flex-wrap: wrap; }
+        .nav-link { padding: 5px 12px; color: var(--text-light); text-decoration: none; border-radius: 50px; transition: var(--transition); font-weight: 500; font-size: 0.85rem; }
+        .nav-link:hover, .nav-link.active { background: var(--primary-gold); color: var(--bg-dark); }
+        .quick-links { display: flex; gap: 6px; }
+        .quick-link { padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 50px; text-decoration: none; color: var(--text-light); font-size: 0.7rem; transition: var(--transition); }
+        .quick-link:hover { background: var(--primary-gold); color: var(--bg-dark); }
+        
+        /* Hero */
+        .page-hero { padding: 40px 0 30px; text-align: center; }
+        .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 10px; background: linear-gradient(135deg, #fff, var(--primary-gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .page-subtitle { color: var(--text-muted); font-size: 0.9rem; }
+        
+        /* ============================================
+           تصميم البطاقات الثابت – النمط الموحد
+           ============================================ */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 28px;
+            margin: 40px 0;
+        }
+        
+        .lesson-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 15px 30px -12px rgba(0,0,0,0.4);
+        }
+        
+        /* أيقونة الدرس (ثابتة في الأعلى) */
+        .lesson-icon {
+            height: 110px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--bg-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        /* محتوى البطاقة */
+        .lesson-content {
+            padding: 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* تصنيف الدرس */
+        .lesson-category {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary-gold);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            width: fit-content;
+        }
+        
+        /* عنوان الدرس */
+        .lesson-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+        
+        /* وصف الدرس */
+        .lesson-description {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        
+        /* معلومات إضافية (الوقت والمستوى) */
+        .lesson-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 18px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 15px;
+        }
+        
+        .lesson-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* زر القراءة */
+        .lesson-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-gold);
+            padding: 10px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            margin-top: auto;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .lesson-link:hover {
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+            transform: translateX(-5px);
+        }
+        
+        /* عرض Exness */
+        .exness-card {
+            background: linear-gradient(135deg, var(--success-green), #1a6e3a);
+            border-radius: var(--border-radius);
+            padding: 35px;
+            text-align: center;
+            margin: 40px 0;
+        }
+        .exness-card h3 { margin-bottom: 10px; }
+        .exness-card p { margin-bottom: 15px; }
+        .btn-exness { display: inline-block; background: white; color: var(--success-green); padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: var(--transition); }
+        .btn-exness:hover { transform: translateY(-2px); }
+        
+        /* الفوتر */
+        .footer { background: #071124; padding: 40px 0 20px; margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 28px; margin-bottom: 28px; }
+        .footer-col h4 { color: var(--primary-gold); margin-bottom: 16px; font-size: 1rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; }
+        .footer-col ul li a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; transition: var(--transition); }
+        .footer-col ul li a:hover { color: var(--primary-gold); }
+        .social-links { display: flex; gap: 10px; margin-top: 12px; }
+        .social-link { width: 34px; height: 34px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; transition: var(--transition); }
+        .social-link:hover { background: var(--primary-gold); transform: translateY(-2px); }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.7rem; color: var(--text-muted); }
+        .disclaimer { font-size: 0.65rem; margin-top: 6px; }
+        
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; text-align: center; }
+            .nav-menu, .quick-links { justify-content: center; }
+            .lessons-grid { grid-template-columns: 1fr; }
+            .page-title { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شريط الأخبار -->
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span class="ticker-item">📚 17 درساً تعليمياً مجاناً</span>
+            <span class="ticker-item">🎯 تعلم التداول من الصفر</span>
+            <span class="ticker-item">⭐ أكثر من 5000 متداول تعلموا معنا</span>
+        </div>
+    </div>
+
+    <!-- الهيدر -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">📊</div>
+                <div class="logo-text">
+                    <h1>منصة التحليل التعليمي</h1>
+                    <p>للفوركس – تعلم التداول بثقة</p>
+                </div>
+            </div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">🏠 الرئيسية</a>
+                <a href="lessons.html" class="nav-link active">📚 الدروس</a>
+                <a href="analysis.html" class="nav-link">📈 التحليلات</a>
+                <a href="tools.html" class="nav-link">🧮 الأدوات</a>
+                <a href="dashboard.html" class="nav-link">📊 لوحة التحكم</a>
+                <a href="payment.html" class="nav-link">💎 VIP</a>
+            </nav>
+            <div class="quick-links">
+                <a href="https://www.facebook.com/share/1Do7CFgwRM/" target="_blank" class="quick-link">📘 فيسبوك</a>
+                <a href="https://t.me/zain81118" target="_blank" class="quick-link">💬 تلغرام</a>
+                <a href="https://one.exnessonelink.com/a/tjpvhjpv" target="_blank" class="quick-link">🚀 Exness</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">📚 الدروس التعليمية</h1>
+            <p class="page-subtitle">رحلة متكاملة من الصفر إلى الاحتراف – جميع الدروس مجانية</p>
+        </div>
+    </section>
+
+    <!-- شبكة الدروس – بطاقات موحدة -->
+    <div class="container">
+        <div class="lessons-grid">
+            
+            <!-- الدرس 1 -->
+            <div class="lesson-card">
+                <div class="lesson-icon">🌍</div>
+                <div class="lesson-content">
+                    <span class="lesson-category">📘 أساسيات</span>
+                    <h3>ما هو سوق الفوركس؟</h3>
+                    <p class="lesson-description">تعريف سوق العملات، حجم التداول، المشاركين في السوق، وأوقات التداول. دليل شامل لفهم أكبر سوق مالي في العالم.</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 12 دقيقة</span>
+                        <span>📊 مبتدئ</span>
+                        <span>👁️ 1.2K</span>
+                    </div>
+                    <a href="content/articles/what-is-forex.html" class="lesson-link">📖 اقرأ الدرس ←</a>
+                </div>
+            </div>
+
+            <!-- الدرس 2 -->
+            <div class="lesson-card">
+                <div class="lesson-icon">⚡</div>
+                <div class="lesson-content">
+                    <span class="lesson-category">📘 أساسيات</span>
+                    <h3>الرافعة المالية</h3>
+                    <p class="lesson-description">ما هي الرافعة المالية؟ كيف تعمل؟ وما هي المخاطر والفرص؟ شرح مبسط مع أمثلة عملية وحسابات توضيحية.</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 10 دقائق</span>
+                        <span>📊 مبتدئ</span>
+                        <span>👁️ 980</span>
+                    </div>
+                    <a href="content/articles/leverage.html" class="lesson-link">📖 اقرأ الدرس ←</a>
+                </div>
+            </div>
+
+            <!-- الدرس 3 -->
+            <div class="lesson-card">
+                <div class="lesson-icon">🛡️</div>
+                <div class="lesson-content">
+                    <span class="lesson-category">🛡️ إدارة مخاطر</span>
+                    <h3>إدارة رأس المال</h3>
+                    <p class="lesson-description">قاعدة 1%، تحديد حجم العقد المناسب، نسبة المخاطرة/العائد، والحد الأقصى للخسارة اليومية. مفتاح البقاء في السوق.</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 10 دقائق</span>
+                        <span>📊 مهم للجميع</span>
+                        <span>👁️ 1.5K</span>
+                    </div>
+                    <a href="content/articles/risk-management.html" class="lesson-link">📖 اقرأ الدرس ←</a>
+                </div>
+            </div>
+
+            <!-- الدرس 4 -->
+            <div class="lesson-card">
+                <div class="lesson-icon">📈</div>
+                <div class="lesson-content">
+                    <span class="lesson-category">📈 تحليل فني</span>
+                    <h3>التحليل الفني للمبتدئين</h3>
+                    <p class="lesson-description">الدعم والمقاومة، الاتجاهات، أنواع الرسوم البيانية، والمؤشرات الفنية الأساسية (RSI, MACD, Moving Averages).</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 12 دقيقة</span>
+                        <span>📊 مبتدئ</span>
+                        <span>👁️ 850</span>
+                    </div>
+                    <a href="content/articles/technical-analysis.html" class="lesson-link">📖 اقرأ الدرس ←</a>
+                </div>
+            </div>
+
+            <!-- الدرس 5 -->
+            <div class="lesson-card">
+                <div class="lesson-icon">🚀</div>
+                <div class="lesson-content">
+                    <span class="lesson-category">🎯 استراتيجيات</span>
+                    <h3>استراتيجية الاختراق</h3>
+                    <p class="lesson-description">كيف تحدد وتستغل نقاط الاختراق في السوق. أنواع الاختراقات، وكيف تتجنب الاختراقات الكاذبة.</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 8 دقائق</span>
+                        <span>📊 متوسط</span>
+                        <span>👁️ 720</span>
+                    </div>
+                    <a href="content/articles/breakout-strategy.html" class="lesson-link">📖 اقرأ الدرس ←</a>
+                </div>
+            </div>
+
+            <!-- الدرس 6 -->
+            <div class="lesson-card">
+                <div class="lesson-icon">🧠</div>
+                <div class="lesson-content">
+                    <span class="lesson-category">🧠 نفسية تداول</span>
+                    <h3>سيكولوجية التداول</h3>
+                    <p class="lesson-description">كيف تتحكم في الخوف والطمع، تتجنب الانتقام، وتطور الانضباط النفسي. 90% من النجاح نفسي!</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 10 دقائق</span>
+                        <span>📊 مهم للجميع</span>
+                        <span>👁️ 1.1K</span>
+                    </div>
+                    <a href="content/articles/trading-psychology.html" class="lesson-link">📖 اقرأ الدرس ←</a>
+                </div>
+            </div>
+
+            <!-- الدرس 7 -->
+            <div class="lesson-card">
+                <div class="lesson-icon">🔍</div>
+                <div class="lesson-content">
+                    <span class="lesson-category">📘 أساسيات</span>
+                    <h3>كيف تختار وسيط فوركس؟</h3>
+                    <p class="lesson-description">المعايير الأساسية لاختيار وسيط موثوق: التراخيص، الشفافية، سرعة السحب، السبريد، والدعم الفني.</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 8 دقائق</span>
+                        <span>📊 مبتدئ</span>
+                        <span>👁️ 650</span>
+                    </div>
+                    <a href="content/articles/choose-broker.html" class="lesson-link">📖 اقرأ الدرس ←</a>
+                </div>
+            </div>
+
+            <!-- الدرس 8 -->
+            <div class="lesson-card">
+                <div class="lesson-icon">📊</div>
+                <div class="lesson-content">
+                    <span class="lesson-category">📈 تحليل فني</span>
+                    <h3>المتوسطات المتحركة</h3>
+                    <p class="lesson-description">أقوى استراتيجية باستخدام المؤشر الأكثر شهرة. أنواع المتوسطات، التقاطع الذهبي، وإعدادات موصى بها.</p>
+                    <div class="lesson-meta">
+                        <span>⏱️ 10 دقائق</span>
+                        <span>📊 متوسط</span>
+                        <span>👁️ 590</span>
+                    </div>
+                    <a href="content/articles/moving-average-strategy.html" class="lesson-link">📖 اقرأ الدرس ←</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- عرض Exness -->
+    <div class="container">
+        <div class="exness-card">
+            <h3>🚀 جاهز للتداول الحقيقي؟</h3>
+            <p>افتح حساباً مع Exness – بيئة آمنة، عمولات منخفضة، سحب فوري</p>
+            <a href="https://one.exnessonelink.com/a/tjpvhjpv" target="_blank" class="btn-exness">افتح حسابك الآن – مجاناً</a>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>📊 منصة التحليل</h4>
+                    <p style="font-size: 0.75rem;">منصة تعليمية مجانية لتعلم تداول الفوركس</p>
+                    <div class="social-links">
+                        <a href="https://t.me/zain81118" target="_blank" class="social-link">💬</a>
+                        <a href="https://www.facebook.com/share/1Do7CFgwRM/" target="_blank" class="social-link">📘</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">🏠 الرئيسية</a></li>
+                        <li><a href="lessons.html">📚 الدروس</a></li>
+                        <li><a href="analysis.html">📈 التحليلات</a></li>
+                        <li><a href="tools.html">🧮 الأدوات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>مفيد</h4>
+                    <ul>
+                        <li><a href="results.html">📊 النتائج</a></li>
+                        <li><a href="payment.html">💎 VIP</a></li>
+                        <li><a href="dashboard.html">📊 لوحة التحكم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><a href="https://t.me/zain81118">📱 تلغرام</a></li>
+                        <li><a href="https://www.facebook.com/share/1Do7CFgwRM/">📘 فيسبوك</a></li>
+                        <li><a href="https://one.exnessonelink.com/a/tjpvhjpv">🚀 Exness</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 منصة التحليل التعليمي للفوركس – جميع الحقوق محفوظة</p>
+                <p class="disclaimer">⚠️ تنويه: التداول ينطوي على مخاطر عالية، قد تخسر رأس مالك. هذا المحتوى تعليمي وليس توصية استثمارية.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

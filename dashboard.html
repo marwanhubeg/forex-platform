@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | منصة التحليل التعليمي للفوركس</title>
+    <meta name="description" content="لوحة تحكم شخصية – تتبع تقدمك التعليمي وإحصائياتك">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           نفس أنماط الصفحة الرئيسية
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-blue: #1E3A5F;
+            --primary-gold: #D4AF37;
+            --success-green: #2ECC71;
+            --danger-red: #E74C3C;
+            --bg-dark: #0A1628;
+            --bg-card: #0F1E3A;
+            --text-light: #F0F4F8;
+            --text-muted: #8BA0B8;
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* شريط الأخبار */
+        .news-ticker {
+            background: linear-gradient(90deg, var(--primary-blue), var(--bg-card));
+            padding: 6px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .ticker-content {
+            display: inline-block;
+            animation: tickerScroll 25s linear infinite;
+        }
+        
+        .ticker-item {
+            display: inline-block;
+            margin: 0 20px;
+            font-size: 0.8rem;
+        }
+        
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* الهيدر */
+        .header {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo-icon { font-size: 26px; }
+        
+        .logo-text h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+        
+        .logo-text p {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            padding: 5px 12px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+        }
+        
+        .quick-links {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .quick-link {
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.7rem;
+            transition: var(--transition);
+        }
+        
+        .quick-link:hover {
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+        }
+        
+        /* Hero القسم */
+        .page-hero {
+            padding: 40px 0 30px;
+            text-align: center;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, var(--primary-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .page-subtitle {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* إحصائيات لوحة التحكم */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+        
+        .stat-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+        
+        /* شريط التقدم */
+        .progress-section {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            margin: 30px 0;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .progress-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .progress-bar-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            height: 12px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, var(--primary-gold), #b8941e);
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.5s ease;
+        }
+        
+        /* النشاطات الأخيرة */
+        .recent-section {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            margin: 30px 0;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .recent-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .activity-icon {
+            font-size: 1.2rem;
+        }
+        
+        .activity-text {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .activity-date {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        
+        .activity-status {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 50px;
+        }
+        
+        .status-completed {
+            background: rgba(46, 204, 113, 0.2);
+            color: var(--success-green);
+        }
+        
+        .status-pending {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--primary-gold);
+        }
+        
+        /* الأهداف */
+        .goals-section {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            margin: 30px 0;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .goals-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+        
+        .goal-item {
+            margin-bottom: 20px;
+        }
+        
+        .goal-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        
+        /* الفوتر */
+        .footer {
+            background: #071124;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 28px;
+            margin-bottom: 28px;
+        }
+        
+        .footer-col h4 {
+            color: var(--primary-gold);
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-col ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        
+        .social-link {
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        
+        .disclaimer {
+            font-size: 0.65rem;
+            margin-top: 6px;
+        }
+        
+        /* متجاوب */
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; text-align: center; }
+            .nav-menu { justify-content: center; }
+            .quick-links { justify-content: center; }
+            .dashboard-stats { grid-template-columns: 1fr; }
+            .page-title { font-size: 1.5rem; }
+            .progress-title { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شريط الأخبار -->
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span class="ticker-item">📊 لوحة التحكم الشخصية – تابع تقدمك التعليمي</span>
+            <span class="ticker-item">🎯 أكمل الدروس لتحصل على شهادة إتمام</span>
+            <span class="ticker-item">⭐ أكثر من 5000 متداول يثقون بنا</span>
+        </div>
+    </div>
+
+    <!-- الهيدر -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <div class="logo-icon">📊</div>
+                    <div class="logo-text">
+                        <h1>منصة التحليل التعليمي</h1>
+                        <p>للفوركس – تعلم التداول بثقة</p>
+                    </div>
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link">🏠 الرئيسية</a>
+                    <a href="lessons.html" class="nav-link">📚 الدروس</a>
+                    <a href="analysis.html" class="nav-link">📈 التحليلات</a>
+                    <a href="tools.html" class="nav-link">🧮 الأدوات</a>
+                    <a href="dashboard.html" class="nav-link active">📊 لوحة التحكم</a>
+                    <a href="payment.html" class="nav-link">💎 VIP</a>
+                </nav>
+                
+                <div class="quick-links">
+                    <a href="https://www.facebook.com/share/1Do7CFgwRM/" target="_blank" class="quick-link">📘 فيسبوك</a>
+                    <a href="https://t.me/zain81118" target="_blank" class="quick-link">💬 تلغرام</a>
+                    <a href="https://one.exnessonelink.com/a/tjpvhjpv" target="_blank" class="quick-link">🚀 Exness</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">📊 لوحة التحكم الشخصية</h1>
+            <p class="page-subtitle">تتبع تقدمك التعليمي وإحصائياتك الشخصية</p>
+        </div>
+    </section>
+
+    <!-- إحصائيات -->
+    <div class="container">
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-value" id="completedLessons">5</div>
+                <div class="stat-label">دروس مكتملة</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value" id="completionRate">29%</div>
+                <div class="stat-label">نسبة الإكمال</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-value" id="earnedPoints">250</div>
+                <div class="stat-label">النقاط</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-value" id="rank">مبتدئ</div>
+                <div class="stat-label">المستوى</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- شريط التقدم -->
+    <div class="container">
+        <div class="progress-section">
+            <div class="progress-title">
+                <span>📈 التقدم التعليمي</span>
+                <span id="progressPercent">29% مكتمل</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-fill" id="progressFill" style="width: 29%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- النشاطات الأخيرة -->
+    <div class="container">
+        <div class="recent-section">
+            <h3 class="recent-title">📋 آخر النشاطات</h3>
+            <div id="recentActivities">
+                <div class="activity-item">
+                    <div class="activity-icon">✅</div>
+                    <div class="activity-text">
+                        <div class="activity-title">أكملت درس "ما هو الفوركس؟"</div>
+                        <div class="activity-date">منذ ساعتين</div>
+                    </div>
+                    <div class="activity-status status-completed">مكتمل</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">📖</div>
+                    <div class="activity-text">
+                        <div class="activity-title">بدأت درس "الرافعة المالية"</div>
+                        <div class="activity-date">منذ يوم</div>
+                    </div>
+                    <div class="activity-status status-pending">قيد التقدم</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">✅</div>
+                    <div class="activity-text">
+                        <div class="activity-title">أكملت درس "إدارة رأس المال"</div>
+                        <div class="activity-date">منذ 3 أيام</div>
+                    </div>
+                    <div class="activity-status status-completed">مكتمل</div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">📈</div>
+                    <div class="activity-text">
+                        <div class="activity-title">شاهدت تحليل EUR/USD اليوم</div>
+                        <div class="activity-date">منذ 5 أيام</div>
+                    </div>
+                    <div class="activity-status status-completed">مكتمل</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- الأهداف القادمة -->
+    <div class="container">
+        <div class="goals-section">
+            <h3 class="goals-title">🎯 الأهداف القادمة</h3>
+            <div class="goal-item">
+                <div class="goal-header">
+                    <span>📊 أكمل 10 دروس</span>
+                    <span>5/10</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-fill" style="width: 50%;"></div>
+                </div>
+            </div>
+            <div class="goal-item">
+                <div class="goal-header">
+                    <span>⭐ احصل على 500 نقطة</span>
+                    <span>250/500</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-fill" style="width: 50%;"></div>
+                </div>
+            </div>
+            <div class="goal-item">
+                <div class="goal-header">
+                    <span>🎯 تابع 5 تحليلات يومية</span>
+                    <span>2/5</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-fill" style="width: 40%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- عرض Exness -->
+    <div class="container">
+        <div style="background: linear-gradient(135deg, var(--success-green), #1a6e3a); border-radius: var(--border-radius); padding: 30px; text-align: center; margin: 30px 0;">
+            <h3 style="margin-bottom: 10px;">🚀 أكمل تعلمك وابدأ التداول الحقيقي</h3>
+            <p style="margin-bottom: 15px;">افتح حساباً مع Exness – بيئة آمنة، عمولات منخفضة، سحب فوري</p>
+            <a href="https://one.exnessonelink.com/a/tjpvhjpv" target="_blank" style="display: inline-block; background: white; color: var(--success-green); padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 700;">🚀 افتح حسابك الآن</a>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>📊 منصة التحليل</h4>
+                    <p style="font-size: 0.75rem;">منصة تعليمية مجانية لتعلم تداول الفوركس</p>
+                    <div class="social-links">
+                        <a href="https://t.me/zain81118" target="_blank" class="social-link">💬</a>
+                        <a href="https://www.facebook.com/share/1Do7CFgwRM/" target="_blank" class="social-link">📘</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">🏠 الرئيسية</a></li>
+                        <li><a href="lessons.html">📚 الدروس</a></li>
+                        <li><a href="analysis.html">📈 التحليلات</a></li>
+                        <li><a href="tools.html">🧮 الأدوات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>مفيد</h4>
+                    <ul>
+                        <li><a href="results.html">📊 النتائج</a></li>
+                        <li><a href="payment.html">💎 VIP</a></li>
+                        <li><a href="dashboard.html">📊 لوحة التحكم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><a href="https://t.me/zain81118">📱 تلغرام</a></li>
+                        <li><a href="https://www.facebook.com/share/1Do7CFgwRM/">📘 فيسبوك</a></li>
+                        <li><a href="https://one.exnessonelink.com/a/tjpvhjpv">🚀 Exness</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 منصة التحليل التعليمي للفوركس – جميع الحقوق محفوظة</p>
+                <p class="disclaimer">⚠️ تنويه: التداول ينطوي على مخاطر عالية، قد تخسر رأس مالك. هذا المحتوى تعليمي وليس توصية استثمارية.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تحديث البيانات من localStorage
+        const progress = JSON.parse(localStorage.getItem('learning_progress')) || { completed: [] };
+        const totalLessons = 8;
+        const completedCount = progress.completed.length || 5;
+        const completionRate = Math.floor((completedCount / totalLessons) * 100);
+        
+        // تحديث الإحصائيات
+        document.getElementById('completedLessons').innerText = completedCount;
+        document.getElementById('completionRate').innerText = completionRate + '%';
+        document.getElementById('progressFill').style.width = completionRate + '%';
+        document.getElementById('progressPercent').innerText = completionRate + '% مكتمل';
+        
+        // تحديث المستوى
+        let rank = 'مبتدئ 🌱';
+        if (completionRate >= 80) rank = 'متقدم 🔥';
+        else if (completionRate >= 50) rank = 'متوسط 📈';
+        else if (completionRate >= 20) rank = 'مبتدئ 📚';
+        document.getElementById('rank').innerText = rank;
+        
+        // تحديث النقاط
+        const points = completedCount * 50;
+        document.getElementById('earnedPoints').innerText = points;
+    </script>
+</body>
+</html>

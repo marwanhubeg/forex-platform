@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- SEO -->
+    <title>منصة التحليل التعليمي للفوركس | تعلم التداول من الصفر إلى الاحتراف</title>
+    <meta name="description" content="منصة تعليمية مجانية لتعلم تداول الفوركس. شروحات مبسطة، تحليلات يومية، حاسبات تفاعلية، وإشارات دقيقة.">
+    <meta name="keywords" content="تعليم الفوركس, تداول الفوركس, تحليل اليورو دولار, تحليل الذهب, الرافعة المالية, Exness">
+    <meta name="author" content="منصة التحليل التعليمي للفوركس">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="منصة التحليل التعليمي للفوركس">
+    <meta property="og:description" content="تعلم التداول من الصفر إلى الاحتراف – مجاناً">
+    <meta property="og:url" content="https://aqarzain.github.io/aqarzain/">
+    <meta property="og:type" content="website">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://aqarzain.github.io/aqarzain/">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <style>
+        /* ============================================
+           منصة التحليل التعليمي للفوركس – التصميم الجديد
+           ============================================ */
+        
+        /* نظام الألوان */
+        :root {
+            --primary-blue: #1E3A5F;
+            --primary-gold: #D4AF37;
+            --success-green: #2ECC71;
+            --danger-red: #E74C3C;
+            --bg-dark: #0A1628;
+            --bg-card: #0F1E3A;
+            --text-light: #F0F4F8;
+            --text-muted: #8BA0B8;
+            --neon-blue: #00D4FF;
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        /* ========== شريط الأخبار ========== */
+        .news-ticker {
+            background: linear-gradient(90deg, var(--primary-blue), var(--bg-card));
+            padding: 6px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .ticker-content {
+            display: inline-block;
+            animation: tickerScroll 25s linear infinite;
+        }
+        
+        .ticker-item {
+            display: inline-block;
+            margin: 0 20px;
+            font-size: 0.8rem;
+        }
+        
+        .ticker-item .up { color: var(--success-green); }
+        .ticker-item .down { color: var(--danger-red); }
+        
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* ========== الهيدر المعدل (مساحة أقل) ========== */
+        .header {
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo-icon {
+            font-size: 26px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+        }
+        
+        .logo-text p {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+        }
+        
+        /* القائمة الرئيسية */
+        .nav-menu {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            padding: 5px 12px;
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition);
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+        }
+        
+        /* روابط سريعة */
+        .quick-links {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .quick-link {
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.7rem;
+            transition: var(--transition);
+        }
+        
+        .quick-link:hover {
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+        }
+        
+        /* ========== Hero Section ========== */
+        .hero {
+            padding: 50px 0 40px;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary-gold);
+            padding: 5px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff, var(--primary-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 25px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-gold), #b8941e);
+            color: var(--bg-dark);
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            padding: 10px 26px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        
+        /* ========== الأقسام ========== */
+        .section {
+            padding: 50px 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title span {
+            color: var(--primary-gold);
+        }
+        
+        /* بطاقات الميزات */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 28px 20px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+        }
+        
+        .feature-link {
+            color: var(--primary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        /* بطاقات الدروس */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .lesson-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .lesson-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-gold);
+        }
+        
+        .lesson-image {
+            height: 110px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--bg-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        
+        .lesson-content {
+            padding: 18px;
+        }
+        
+        .lesson-category {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--primary-gold);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            margin-bottom: 10px;
+        }
+        
+        .lesson-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .lesson-card p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+        
+        /* قسم التحليل */
+        .analysis-card {
+            background: linear-gradient(135deg, var(--bg-card), var(--primary-blue));
+            border-radius: var(--border-radius);
+            padding: 28px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .analysis-symbol {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        .analysis-price {
+            font-size: 1.1rem;
+        }
+        
+        .analysis-levels {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin: 20px 0;
+        }
+        
+        .level {
+            text-align: center;
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+        
+        .level-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+        
+        .level-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* آراء المستخدمين */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        
+        .testimonial-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .testimonial-stars {
+            color: var(--primary-gold);
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--primary-gold);
+            font-size: 0.85rem;
+        }
+        
+        /* عرض Exness */
+        .exness-card {
+            background: linear-gradient(135deg, var(--success-green), #1a6e3a);
+            border-radius: var(--border-radius);
+            padding: 40px 28px;
+            text-align: center;
+        }
+        
+        .exness-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .exness-card p {
+            font-size: 0.9rem;
+        }
+        
+        .btn-exness {
+            display: inline-block;
+            background: white;
+            color: var(--success-green);
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 18px;
+            transition: var(--transition);
+        }
+        
+        /* النشرة البريدية */
+        .newsletter {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 40px 28px;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .newsletter-input {
+            padding: 12px 18px;
+            border-radius: 50px;
+            border: none;
+            width: 280px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        /* ========== الفوتر ========== */
+        .footer {
+            background: #071124;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 28px;
+            margin-bottom: 28px;
+        }
+        
+        .footer-col h4 {
+            color: var(--primary-gold);
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-col ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--primary-gold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        
+        .social-link {
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background: var(--primary-gold);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+        
+        .disclaimer {
+            font-size: 0.65rem;
+            margin-top: 6px;
+        }
+        
+        /* ========== متجاوب ========== */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 2rem; }
+            .section-title { font-size: 1.5rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; text-align: center; }
+            .nav-menu { justify-content: center; }
+            .quick-links { justify-content: center; }
+            .hero { padding: 30px 0; }
+            .hero-title { font-size: 1.6rem; }
+            .hero-stats { gap: 20px; }
+            .features-grid, .lessons-grid, .testimonials-grid { grid-template-columns: 1fr; }
+            .analysis-levels { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== شريط الأخبار ========== -->
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span class="ticker-item">📈 EUR/USD: 1.08750 <span class="up">▲ +0.15%</span></span>
+            <span class="ticker-item">🥇 XAU/USD: 2050.50 <span class="up">▲ +0.32%</span></span>
+            <span class="ticker-item">🇬🇧 GBP/USD: 1.26580 <span class="up">▲ +0.08%</span></span>
+            <span class="ticker-item">🇯🇵 USD/JPY: 148.32 <span class="down">▼ -0.12%</span></span>
+            <span class="ticker-item">🎯 إشارة اليوم: شراء EUR/USD من 1.0850</span>
+        </div>
+    </div>
+
+    <!-- ========== الهيدر (مساحة أقل) ========== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    <div class="logo-icon">📊</div>
+                    <div class="logo-text">
+                        <h1>منصة التحليل التعليمي</h1>
+                        <p>للفوركس – تعلم التداول بثقة</p>
+                    </div>
+                </div>
+                
+                <nav class="nav-menu">
+                    <a href="index.html" class="nav-link active">🏠 الرئيسية</a>
+                    <a href="lessons.html" class="nav-link">📚 الدروس</a>
+                    <a href="analysis.html" class="nav-link">📈 التحليلات</a>
+                    <a href="tools.html" class="nav-link">🧮 الأدوات</a>
+                    <a href="dashboard.html" class="nav-link">📊 لوحة التحكم</a>
+                    <a href="payment.html" class="nav-link">💎 VIP</a>
+                </nav>
+                
+                <div class="quick-links">
+                    <a href="https://www.facebook.com/share/1Do7CFgwRM/" target="_blank" class="quick-link">📘 فيسبوك</a>
+                    <a href="https://t.me/zain81118" target="_blank" class="quick-link">💬 تلغرام</a>
+                    <a href="https://one.exnessonelink.com/a/tjpvhjpv" target="_blank" class="quick-link">🚀 Exness</a>
+                    <button class="quick-link" onclick="toggleSearch()">🔍 بحث</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== Hero Section ========== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">🎓 أكثر من 5000 متداول يثقون بنا</div>
+            <h1 class="hero-title">تعليم التداول من الصفر<br>إلى الاحتراف</h1>
+            <p class="hero-subtitle">
+                منصة تعليمية متكاملة تقدم دروساً مجانية، تحليلات يومية، 
+                وأدوات احترافية لمساعدتك في رحلة التداول
+            </p>
+            <div class="hero-buttons">
+                <a href="lessons.html" class="btn-primary">📚 ابدأ التعلم الآن</a>
+                <a href="https://one.exnessonelink.com/a/tjpvhjpv" target="_blank" class="btn-secondary">🚀 افتح حساب Exness</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">درس تعليمي</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">دقة التحليلات</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">متداول</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">دعم</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== أقسام المنصة ========== -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">🎯 <span>ماذا نقدم</span> لك؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>مكتبة تعليمية</h3>
+                    <p>دروس شاملة من الصفر إلى الاحتراف</p>
+                    <a href="lessons.html" class="feature-link">استكشف المكتبة →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>تحليلات يومية</h3>
+                    <p>تحليل EUR/USD والذهب مع نقاط دخول</p>
+                    <a href="analysis.html" class="feature-link">اقرأ التحليل →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧮</div>
+                    <h3>أدوات تفاعلية</h3>
+                    <p>حاسبات الرافعة وحجم العقد</p>
+                    <a href="tools.html" class="feature-link">جرب الأدوات →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>إشارات VIP</h3>
+                    <p>إشارات يومية بدقة 85%</p>
+                    <a href="payment.html" class="feature-link">اشترك الآن →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== أحدث الدروس ========== -->
+    <section class="section" style="background: rgba(15, 30, 58, 0.5);">
+        <div class="container">
+            <h2 class="section-title">📚 <span>أحدث</span> الدروس</h2>
+            <div class="lessons-grid">
+                <div class="lesson-card">
+                    <div class="lesson-image">🌍</div>
+                    <div class="lesson-content">
+                        <span class="lesson-category">أساسيات</span>
+                        <h3>ما هو سوق الفوركس؟</h3>
+                        <p>تعريف السوق والمشاركين فيه</p>
+                        <a href="content/articles/what-is-forex.html" class="feature-link">اقرأ الدرس →</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-image">⚡</div>
+                    <div class="lesson-content">
+                        <span class="lesson-category">أساسيات</span>
+                        <h3>الرافعة المالية</h3>
+                        <p>شرح الرافعة والمخاطر</p>
+                        <a href="content/articles/leverage.html" class="feature-link">اقرأ الدرس →</a>
+                    </div>
+                </div>
+                <div class="lesson-card">
+                    <div class="lesson-image">🛡️</div>
+                    <div class="lesson-content">
+                        <span class="lesson-category">إدارة مخاطر</span>
+                        <h3>إدارة رأس المال</h3>
+                        <p>قاعدة 1% ونسبة المخاطرة</p>
+                        <a href="content/articles/risk-management.html" class="feature-link">اقرأ الدرس →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== تحليل اليوم ========== -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">📈 <span>تحليل</span> اليوم</h2>
+            <div class="analysis-card">
+                <div class="analysis-header">
+                    <div class="analysis-symbol">🇪🇺 EUR/USD</div>
+                    <div class="analysis-price">1.08750 <span class="analysis-change up">▲ +0.15%</span></div>
+                </div>
+                <div class="analysis-levels">
+                    <div class="level">
+                        <div class="level-label">📈 نقطة دخول</div>
+                        <div class="level-value">1.0850 - 1.0880</div>
+                    </div>
+                    <div class="level">
+                        <div class="level-label">🛑 وقف خسارة</div>
+                        <div class="level-value">1.0820</div>
+                    </div>
+                    <div class="level">
+                        <div class="level-label">✅ هدف أول</div>
+                        <div class="level-value">1.0920</div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a href="analysis.html" class="btn-primary">📊 التحليل الكامل</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== آراء المتداولين ========== -->
+    <section class="section" style="background: rgba(15, 30, 58, 0.5);">
+        <div class="container">
+            <h2 class="section-title">⭐ <span>آراء</span> المتداولين</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"منصة رائعة! الإشارات دقيقة جداً."</p>
+                    <p class="testimonial-author">- أحمد محمد</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"التحليلات اليومية ساعدتني كثيراً."</p>
+                    <p class="testimonial-author">- سارة علي</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"الدروس غيرت طريقة تفكيري في التداول."</p>
+                    <p class="testimonial-author">- محمد خالد</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== عرض Exness ========== -->
+    <section class="section">
+        <div class="container">
+            <div class="exness-card">
+                <h3>🚀 جاهز للتداول الحقيقي؟</h3>
+                <p>افتح حساباً مع Exness – بيئة آمنة، عمولات منخفضة، سحب فوري</p>
+                <a href="https://one.exnessonelink.com/a/tjpvhjpv" target="_blank" class="btn-exness">افتح حسابك الآن – مجاناً</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== الفوتر ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>📊 منصة التحليل</h4>
+                    <p style="font-size: 0.75rem;">منصة تعليمية مجانية لتعلم تداول الفوركس</p>
+                    <div class="social-links">
+                        <a href="https://t.me/zain81118" target="_blank" class="social-link">💬</a>
+                        <a href="https://www.facebook.com/share/1Do7CFgwRM/" target="_blank" class="social-link">📘</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">🏠 الرئيسية</a></li>
+                        <li><a href="lessons.html">📚 الدروس</a></li>
+                        <li><a href="analysis.html">📈 التحليلات</a></li>
+                        <li><a href="tools.html">🧮 الأدوات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>مفيد</h4>
+                    <ul>
+                        <li><a href="results.html">📊 النتائج</a></li>
+                        <li><a href="payment.html">💎 VIP</a></li>
+                        <li><a href="dashboard.html">📊 لوحة التحكم</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>تواصل معنا</h4>
+                    <ul>
+                        <li><a href="https://t.me/zain81118">📱 تلغرام</a></li>
+                        <li><a href="https://www.facebook.com/share/1Do7CFgwRM/">📘 فيسبوك</a></li>
+                        <li><a href="https://one.exnessonelink.com/a/tjpvhjpv">🚀 Exness</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 منصة التحليل التعليمي للفوركس – جميع الحقوق محفوظة</p>
+                <p class="disclaimer">⚠️ تنويه: التداول ينطوي على مخاطر عالية، قد تخسر رأس مالك. هذا المحتوى تعليمي وليس توصية استثمارية.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleSearch() {
+            alert('🔍 سيتم إضافة وظيفة البحث قريباً');
+        }
+    </script>
+</body>
+</html>

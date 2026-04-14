@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://marwanhubeg.github.io/forex-platform/sitemap.xml

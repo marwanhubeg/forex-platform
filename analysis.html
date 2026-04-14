@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحليلات اليومية | إشارات فوركس | منصة التحليل التعليمي</title>
+    <meta name="description" content="تحليلات يومية لليورو دولار والذهب والباوند – إشارات دقيقة ونقاط دخول وخروج واضحة">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-blue: #1E3A5F;
+            --primary-gold: #D4AF37;
+            --success-green: #2ECC71;
+            --danger-red: #E74C3C;
+            --bg-dark: #0A1628;
+            --bg-card: #0F1E3A;
+            --text-light: #F0F4F8;
+            --text-muted: #8BA0B8;
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
+        body { font-family: 'Cairo', sans-serif; background: var(--bg-dark); color: var(--text-light); line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        
+        .news-ticker { background: linear-gradient(90deg, var(--primary-blue), var(--bg-card)); padding: 6px 0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .ticker-content { display: inline-block; animation: tickerScroll 25s linear infinite; }
+        .ticker-item { display: inline-block; margin: 0 20px; font-size: 0.8rem; }
+        .ticker-item .up { color: var(--success-green); }
+        .ticker-item .down { color: var(--danger-red); }
+        @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        .header { background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .header-container { display: flex; justify-content: space-between; align-items: center; padding: 8px 24px; flex-wrap: wrap; gap: 10px; max-width: 1400px; margin: 0 auto; }
+        .logo { display: flex; align-items: center; gap: 8px; }
+        .logo-icon { font-size: 26px; }
+        .logo-text h1 { font-size: 1rem; font-weight: 700; color: var(--primary-gold); }
+        .logo-text p { font-size: 0.6rem; color: var(--text-muted); }
+        .nav-menu { display: flex; gap: 4px; flex-wrap: wrap; }
+        .nav-link { padding: 5px 12px; color: var(--text-light); text-decoration: none; border-radius: 50px; transition: var(--transition); font-weight: 500; font-size: 0.85rem; }
+        .nav-link:hover, .nav-link.active { background: var(--primary-gold); color: var(--bg-dark); }
+        .quick-links { display: flex; gap: 6px; }
+        .quick-link { padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 50px; text-decoration: none; color: var(--text-light); font-size: 0.7rem; transition: var(--transition); }
+        .quick-link:hover { background: var(--primary-gold); color: var(--bg-dark); }
+        
+        .page-hero { padding: 40px 0 30px; text-align: center; }
+        .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 10px; background: linear-gradient(135deg, #fff, var(--primary-gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .page-subtitle { color: var(--text-muted); font-size: 0.9rem; }
+        
+        .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 24px; margin: 30px 0; }
+        .analysis-card { background: var(--bg-card); border-radius: var(--border-radius); overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.1); transition: var(--transition); cursor: pointer; }
+        .analysis-card:hover { transform: translateY(-5px); border-color: var(--primary-gold); }
+        .card-header { padding: 20px; background: linear-gradient(135deg, var(--primary-blue), var(--bg-dark)); border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        .card-symbol { font-size: 1.3rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+        .card-price { font-size: 1.1rem; }
+        .card-change { font-size: 0.8rem; }
+        .card-change.up { color: var(--success-green); }
+        .card-change.down { color: var(--danger-red); }
+        .card-body { padding: 20px; }
+        .direction { display: flex; justify-content: space-between; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 12px; margin-bottom: 20px; }
+        .direction.up { color: var(--success-green); }
+        .direction.down { color: var(--danger-red); }
+        .levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+        .level { text-align: center; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 10px; }
+        .level-label { font-size: 0.65rem; color: var(--text-muted); }
+        .level-value { font-size: 0.9rem; font-weight: 600; }
+        .analysis-summary { margin: 15px 0; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 10px; font-size: 0.85rem; color: var(--text-muted); }
+        .signal-alert { background: rgba(46, 204, 113, 0.1); padding: 12px; border-radius: 10px; text-align: center; margin: 15px 0; border-right: 3px solid var(--success-green); }
+        
+        .footer { background: #071124; padding: 40px 0 20px; margin-top: 50px; text-align: center; }
+        .footer-bottom { font-size: 0.7rem; color: var(--text-muted); }
+        
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; text-align: center; }
+            .nav-menu, .quick-links { justify-content: center; }
+            .analysis-grid { grid-template-columns: 1fr; }
+            .levels { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <span class="ticker-item">📈 EUR/USD: 1.08750 <span class="up">▲ +0.15%</span></span>
+            <span class="ticker-item">🥇 XAU/USD: 2050.50 <span class="up">▲ +0.32%</span></span>
+            <span class="ticker-item">🇬🇧 GBP/USD: 1.26580 <span class="up">▲ +0.08%</span></span>
+            <span class="ticker-item">🎯 إشارة اليوم: شراء EUR/USD من 1.0850 → هدف 1.0920</span>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="header-container">
+            <div class="logo"><div class="logo-icon">📊</div><div class="logo-text"><h1>منصة التحليل التعليمي</h1><p>للفوركس – تعلم التداول بثقة</p></div></div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">🏠 الرئيسية</a>
+                <a href="lessons.html" class="nav-link">📚 الدروس</a>
+                <a href="analysis.html" class="nav-link active">📈 التحليلات</a>
+                <a href="tools.html" class="nav-link">🧮 الأدوات</a>
+                <a href="dashboard.html" class="nav-link">📊 لوحة التحكم</a>
+                <a href="payment.html" class="nav-link">💎 VIP</a>
+            </nav>
+            <div class="quick-links">
+                <a href="https://www.facebook.com/share/1Do7CFgwRM/" target="_blank" class="quick-link">📘 فيسبوك</a>
+                <a href="https://t.me/zain81118" target="_blank" class="quick-link">💬 تلغرام</a>
+                <a href="https://one.exnessonelink.com/a/tjpvhjpv" target="_blank" class="quick-link">🚀 Exness</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-hero">
+            <h1 class="page-title">📈 التحليلات اليومية</h1>
+            <p class="page-subtitle">تحليل فني دقيق – إشارات يومية مع نقاط دخول وخروج واضحة</p>
+        </div>
+
+        <div class="analysis-grid">
+            <!-- بطاقة EUR/USD -->
+            <div class="analysis-card" onclick="location.href='analysis/details/eurusd-detail.html'">
+                <div class="card-header">
+                    <div class="card-symbol">🇪🇺 EUR/USD <span class="card-price">1.08750 <span class="card-change up">▲ +0.15%</span></span></div>
+                </div>
+                <div class="card-body">
+                    <div class="direction up">📊 الاتجاه اليومي: <strong>🔼 صاعد</strong></div>
+                    <div class="levels">
+                        <div class="level"><div class="level-label">📈 نقطة دخول</div><div class="level-value">1.0850 - 1.0880</div></div>
+                        <div class="level"><div class="level-label">🛑 وقف خسارة</div><div class="level-value">1.0820</div></div>
+                        <div class="level"><div class="level-label">✅ هدف أول</div><div class="level-value">1.0920</div></div>
+                    </div>
+                    <div class="analysis-summary">اليورو يواصل الصعود بدعم من البيانات الإيجابية. كسر المقاومة 1.0900 يفتح الطريق نحو 1.0950.</div>
+                    <div class="signal-alert">🔔 <strong>إشارة اليوم:</strong> شراء من 1.0850، هدف 1.0920، وقف 1.0820</div>
+                </div>
+            </div>
+
+            <!-- بطاقة الذهب XAU/USD -->
+            <div class="analysis-card" onclick="location.href='analysis/details/gold-detail.html'">
+                <div class="card-header">
+                    <div class="card-symbol">🥇 XAU/USD (الذهب) <span class="card-price">2050.50 <span class="card-change up">▲ +0.32%</span></span></div>
+                </div>
+                <div class="card-body">
+                    <div class="direction up">📊 الاتجاه اليومي: <strong>🔼 صاعد</strong></div>
+                    <div class="levels">
+                        <div class="level"><div class="level-label">📈 نقطة دخول</div><div class="level-value">2040 - 2050</div></div>
+                        <div class="level"><div class="level-label">🛑 وقف خسارة</div><div class="level-value">2025</div></div>
+                        <div class="level"><div class="level-label">✅ هدف أول</div><div class="level-value">2070</div></div>
+                    </div>
+                    <div class="analysis-summary">الذهب مدعوم بضعف الدولار وارتفاع الطلب. الثبات فوق 2040 يبقي الاتجاه صاعداً.</div>
+                    <div class="signal-alert">🔔 <strong>إشارة اليوم:</strong> شراء من 2045، هدف 2070، وقف 2025</div>
+                </div>
+            </div>
+
+            <!-- بطاقة GBP/USD (الباوند) -->
+            <div class="analysis-card" onclick="location.href='analysis/details/gbpusd-detail.html'">
+                <div class="card-header">
+                    <div class="card-symbol">🇬🇧 GBP/USD <span class="card-price">1.26580 <span class="card-change up">▲ +0.08%</span></span></div>
+                </div>
+                <div class="card-body">
+                    <div class="direction up">📊 الاتجاه اليومي: <strong>🔼 صاعد معتدل</strong></div>
+                    <div class="levels">
+                        <div class="level"><div class="level-label">📈 نقطة دخول</div><div class="level-value">1.2630 - 1.2660</div></div>
+                        <div class="level"><div class="level-label">🛑 وقف خسارة</div><div class="level-value">1.2600</div></div>
+                        <div class="level"><div class="level-label">✅ هدف أول</div><div class="level-value">1.2720</div></div>
+                    </div>
+                    <div class="analysis-summary">الباوند يحقق مكاسب بدعم من البيانات الاقتصادية. الاختراق فوق 1.2700 يزيد الزخم.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- عرض VIP -->
+        <div style="background: linear-gradient(135deg, var(--primary-gold), #b8941e); border-radius: var(--border-radius); padding: 35px; text-align: center; margin: 40px 0;">
+            <h3 style="color: var(--bg-dark); margin-bottom: 10px;">🔥 عايز إشارات يومية بدقة أعلى وتفاصيل أكثر؟</h3>
+            <p style="color: var(--bg-dark); margin-bottom: 20px;">اشترك في باقة VIP – إشارات حصرية + دعم مباشر + تحليلات فورية</p>
+            <a href="payment.html" style="display: inline-block; background: var(--bg-dark); color: var(--primary-gold); padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: 700;">💎 اشترك في VIP الآن</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2025 منصة التحليل التعليمي للفوركس – جميع الحقوق محفوظة</p>
+                <p class="disclaimer">⚠️ تنويه: التحليلات لأغراض تعليمية فقط، وليست توصية استثمارية</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
